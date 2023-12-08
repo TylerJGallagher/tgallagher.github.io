@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Final Project",
+    "section": "",
+    "text": "http://localhost:5783/index.html\n\nObstructive Sleep Apnea Clinical Trials: An Analysis of clinicaltrials.gov\n\nDescription\nObstructive sleep apnea (OSA) is a common condition in the United States, and it is a significant contributor to mortality in the United States via its effect on cardiovascular health - the leading cause of mortality in the United States. Unfortunately, the primary treatment for OSA is continuous positive airway pressure (cPAP), which is difficult for many individuals to adhere to.\nThus, studies into new treatments of OSA are important. Here, we investigate the last 10 years of randomized control trials ongoing regarding OSA treatments via clinicaltrials.gov, a repository of clinical trial data. This data is important, as it suggests new upcoming treatments, as well as the quality and location of these investigations, which is important due to the various etiologies of OSA that may be treated. Below are visualizations of some clinical trial data, followed by a link to a PDF of a full report on this data.\n\n\nInteractive Visualizations\nTable 1: A data table of randomized control trials included in this study.\n\n\n\n\n\n\n\n\n\n\nAttaching package: 'plotly'\n\n\nThe following object is masked from 'package:ggplot2':\n\n    last_plot\n\n\nThe following object is masked from 'package:stats':\n\n    filter\n\n\nThe following object is masked from 'package:graphics':\n\n    layout\n\n\n\n\n\n\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nWarning: Ignoring 1 observations\n\n\n\n\n\n\n\n\nPDF Full Report\n\n\n[Download PDF](OSA%20Clinical%20Trials.pdf){target=\"_blank\"}"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  }
+]

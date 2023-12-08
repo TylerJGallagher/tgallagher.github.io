@@ -1,0 +1,84 @@
+---
+title: "Final Project"
+---
+
+http://localhost:5783/index.html
+
+# Obstructive Sleep Apnea Clinical Trials: An Analysis of clinicaltrials.gov
+
+### Description
+
+Obstructive sleep apnea (OSA) is a common condition in the United States, and it is a significant contributor to mortality in the United States via its effect on cardiovascular health - the leading cause of mortality in the United States. Unfortunately, the primary treatment for OSA is continuous positive airway pressure (cPAP), which is difficult for many individuals to adhere to.
+
+Thus, studies into new treatments of OSA are important. Here, we investigate the last 10 years of randomized control trials ongoing regarding OSA treatments via clinicaltrials.gov, a repository of clinical trial data. This data is important, as it suggests new upcoming treatments, as well as the quality and location of these investigations, which is important due to the various etiologies of OSA that may be treated. Below are visualizations of some clinical trial data, followed by a link to a PDF of a full report on this data.
+
+### Interactive Visualizations
+
+```{r, echo=FALSE}
+library(readxl)
+file_path <- "/Users/TylerGallagher13/Desktop/Projects/main/ctg-studies-01-Del.xlsx"
+osaclintrial <- read_excel(file_path)
+```
+
+Table 1: A data table of randomized control trials included in this study.
+
+```{r, echo=FALSE}
+library(DT)
+osaclintrial <- readxl::read_excel("/Users/TylerGallagher13/Desktop/Projects/main/ctg-studies-01-Del.xlsx")
+selected_columns <- c("Start Date", "Study_Title", "Interventions", "Sponsor", "Sex", "Age")
+osaclintrial_selected <- osaclintrial[, selected_columns, drop = FALSE]
+datatable(osaclintrial_selected)
+```
+
+```{r, echo=FALSE}
+library(ggplot2)
+library(plotly)
+year_counts <- data.frame(Year = c(2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022),
+                          NumTrials = c(8, 12, 15, 10, 17, 5, 17, 13, 11, 11))
+gg <- ggplot(year_counts, aes(x = Year, y = NumTrials)) +
+  geom_line() +
+  geom_point() +
+  labs(title = 'Number of Clinical Trials Over the Years',
+       x = 'Year Started',
+       y = 'Number of Clinical Trials')
+plot <- ggplotly(gg)
+plot
+```
+
+```{r, echo=FALSE}
+library(plotly)
+library(dplyr)
+osaclintrial <- osaclintrial %>%
+  filter(Enrollment >= 0)
+osaclintrial$Enrollment <- round(osaclintrial$Enrollment)
+osaclintrial$Intervention_Type <- recode(osaclintrial$Intervention_Type, 
+                                         `2` = "Drug",
+                                         `4` = "Nerve stimulator",
+                                         `5` = "Physical Appliance",
+                                         `6` = "PAP Variant",
+                                         `7` = "Other",
+                                         `8` = "Physical Therapy",
+                                         `9` = "Behavioral")
+
+scatterplot <- plot_ly(
+  data = osaclintrial,
+  x = ~Intervention_Type,
+  y = ~Enrollment,
+  type = 'scatter',
+  mode = 'markers',
+  marker = list(size = 10),
+  text = ~NCT_Number
+) %>%
+  layout(
+    title = "Enrollment by Intervention Type",
+    xaxis = list(title = "Intervention Type"),
+    yaxis = list(title = "Enrollment")
+  )
+scatterplot
+```
+
+### PDF Full Report
+
+```{r, echo=FALSE}
+cat('[Download PDF](OSA%20Clinical%20Trials.pdf){target="_blank"}')
+```
